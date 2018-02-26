@@ -412,6 +412,10 @@ public class NumberSeekBar extends View {
         float textWidth = mPaint.measureText(text);
         float bgX = (getWidth() - getPaddingRight() - getPaddingLeft()) * mProgress * 1.0f / mMax;
         int x = (int) (getPaddingLeft() + bgX - textWidth / 2 - 1);
+        int offset = getWidth() - x;
+        if (offset < textWidth) {
+            x = (int) (getWidth() - textWidth - 1);
+        }
         canvas.drawText(text, x, baseline, mPaint);
         canvas.restoreToCount(sc);
     }
