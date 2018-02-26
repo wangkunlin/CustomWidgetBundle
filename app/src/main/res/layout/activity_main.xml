@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.wkl.widget.MainActivity">
 
     <com.wkl.widget.bundle.fiv.ForegroundImageView
@@ -11,5 +13,20 @@
         android:foreground="#5c00ff00"
         android:foregroundGravity="bottom"
         android:src="@mipmap/ic_launcher" />
+
+    <com.wkl.widget.bundle.nsb.NumberSeekBar
+        android:id="@+id/face_beautify_buffing"
+        android:layout_width="130dp"
+        android:layout_height="37dp"
+        android:max="5"
+        android:paddingBottom="10dp"
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp"
+        android:progress="3"
+        android:progressDrawable="@drawable/bg_publish_seekbar"
+        android:thumb="@drawable/icon_face_beautify_thumb"
+        app:numberTextColor="#fec435"
+        app:numberTextPadding="5dp"
+        app:numberTextSize="13sp" />
 
 </LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="NumberSeekBar">
+        <!--文字大小-->
+        <attr name="numberTextSize" format="dimension|reference" />
+        <!--文字颜色-->
+        <attr name="numberTextColor" format="color|reference" />
+        <!--文字与 seekbar 的间距-->
+        <attr name="numberTextPadding" format="dimension|reference" />
+    </declare-styleable>
+
+</resources>
