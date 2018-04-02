@@ -1,32 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.wkl.widget.MainActivity">
 
-    <com.wkl.widget.bundle.fiv.ForegroundImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:foreground="#5c00ff00"
-        android:foregroundGravity="bottom"
-        android:src="@mipmap/ic_launcher" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <com.wkl.widget.bundle.nsb.NumberSeekBar
-        android:id="@+id/face_beautify_buffing"
-        android:layout_width="130dp"
-        android:layout_height="37dp"
-        android:max="100"
-        android:paddingBottom="10dp"
-        android:paddingLeft="9dp"
-        android:paddingRight="9dp"
-        android:progress="100"
-        android:progressDrawable="@drawable/bg_publish_seekbar"
-        android:thumb="@drawable/icon_face_beautify_thumb"
-        app:numberTextColor="#fec435"
-        app:numberTextPadding="5dp"
-        app:numberTextSize="13sp" />
+        <com.wkl.widget.bundle.fiv.ForegroundImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:foreground="#5c00ff00"
+            android:foregroundGravity="bottom"
+            android:src="@mipmap/ic_launcher" />
 
-</LinearLayout>
+        <com.wkl.widget.bundle.nsb.NumberSeekBar
+            android:id="@+id/face_beautify_buffing"
+            android:layout_width="130dp"
+            android:layout_height="37dp"
+            android:max="100"
+            android:paddingBottom="10dp"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:progress="100"
+            android:progressDrawable="@drawable/bg_publish_seekbar"
+            android:thumb="@drawable/icon_face_beautify_thumb"
+            app:numberTextColor="#fec435"
+            app:numberTextPadding="5dp"
+            app:numberTextSize="13sp" />
+
+        <com.wkl.widget.bundle.cdv.CountDownView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:max="10"
+            android:progress="7"
+            app:cdProgressBackgroundColor="#000"
+            app:cdProgressCenterColor="#aa71de"
+            app:cdProgressPadding="4dp"
+            app:cdProgressSideColor="#6c88e3"
+            app:cdProgressWidth="8dp"
+            app:cdTextColor="#000"
+            app:cdTextSize="40sp" />
+
+    </LinearLayout>
+
+</ScrollView>

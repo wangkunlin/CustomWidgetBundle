@@ -10,4 +10,21 @@
         <attr name="numberTextPadding" format="dimension|reference" />
     </declare-styleable>
 
+    <declare-styleable name="CountDownView">
+        <!--progress 两边的颜色-->
+        <attr name="cdProgressSideColor" format="color|reference" />
+        <!--progress 中间的颜色-->
+        <attr name="cdProgressCenterColor" format="color|reference" />
+        <!--中间文字的大小-->
+        <attr name="cdTextSize" format="dimension|reference" />
+        <!--中间文字的颜色-->
+        <attr name="cdTextColor" format="color|reference" />
+        <!--progress 宽度-->
+        <attr name="cdProgressWidth" format="dimension|reference" />
+        <!--progress 背景色-->
+        <attr name="cdProgressBackgroundColor" format="color|reference" />
+        <!--progress 与北京的内边距-->
+        <attr name="cdProgressPadding" format="dimension|reference" />
+    </declare-styleable>
+
 </resources>
