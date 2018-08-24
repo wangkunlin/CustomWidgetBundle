@@ -393,9 +393,6 @@ public class NumberSeekBar extends View {
     }
 
     void drawText(Canvas canvas) {
-        int sc = canvas.save();
-
-        canvas.translate(getPaddingLeft() - mThumbOffset, getPaddingTop());
         Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
         int baseline = getPaddingTop() - fontMetrics.top;
         String text = String.valueOf(mProgress);
@@ -407,7 +404,6 @@ public class NumberSeekBar extends View {
             x = (int) (getWidth() - textWidth - 1);
         }
         canvas.drawText(text, x, baseline, mPaint);
-        canvas.restoreToCount(sc);
     }
 
     /**
