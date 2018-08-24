@@ -79,21 +79,11 @@ public class VerticalSeekBar extends View {
         initProgressBar();
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.VerticalSeekBar);
-        int count = ta.getIndexCount();
-        for (int i = 0; i < count; i++) {
-            int index = ta.getIndex(i);
-            if (index == R.styleable.VerticalSeekBar_android_max) {
-                setMax(ta.getInt(index, 0));
-            } else if (index == R.styleable.VerticalSeekBar_android_progress) {
-                setProgress(ta.getInt(index, 0));
-            } else if (index == R.styleable.VerticalSeekBar_android_progressDrawable) {
-                setProgressDrawable(ta.getDrawable(index));
-            } else if (index == R.styleable.VerticalSeekBar_android_thumb) {
-                setThumb(ta.getDrawable(index));
-            } else if (index == R.styleable.VerticalSeekBar_android_text) {
-                setText(ta.getString(index));
-            }
-        }
+        setMax(ta.getInt(R.styleable.VerticalSeekBar_android_max, 0));
+        setProgress(ta.getInt(R.styleable.VerticalSeekBar_android_progress, 0));
+        setProgressDrawable(ta.getDrawable(R.styleable.VerticalSeekBar_android_progressDrawable));
+        setThumb(ta.getDrawable(R.styleable.VerticalSeekBar_android_thumb));
+        setText(ta.getString(R.styleable.VerticalSeekBar_android_text));
         ta.recycle();
         mScaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }

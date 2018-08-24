@@ -7,12 +7,10 @@
 
     <com.wkl.widget.bundle.vsb.EqualizerSeekGroup
         android:id="@+id/esg"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="300dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        android:paddingRight="10dp">
 
         <com.wkl.widget.bundle.vsb.VerticalSeekBar
             android:layout_width="36dp"
@@ -65,5 +63,16 @@
         android:layout_height="100dp"
         android:progress="300"
         app:layout_constraintTop_toBottomOf="@id/esg" />
+
+    <com.wkl.widget.bundle.vtv.VerticalTextView
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        android:layout_marginLeft="10dp"
+        android:text="《这是一个垂直的TextView》"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@id/esg"
+        app:rotationDegrees="90"
+        app:rotationLetters="《》" />
 
 </android.support.constraint.ConstraintLayout>

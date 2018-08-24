@@ -78,31 +78,16 @@ public class CountDownView extends View {
         initProgressBar();
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CountDownView);
-        int count = ta.getIndexCount();
-        int sideColor = 0;
-        int centerColor = 0;
-        for (int i = 0; i < count; i++) {
-            int index = ta.getIndex(i);
-            if (index == R.styleable.CountDownView_cdTextColor) {
-                mTextColor = ta.getColor(index, Color.BLACK);
-            } else if (index == R.styleable.CountDownView_cdTextSize) {
-                mTextSize = ta.getDimensionPixelSize(index, 10);
-            } else if (index == R.styleable.CountDownView_cdProgressWidth) {
-                mStrokeWidth = ta.getDimensionPixelSize(index, mStrokeWidth);
-            } else if (index == R.styleable.CountDownView_cdProgressBackgroundColor) {
-                mProgressBgColor = ta.getColor(index, Color.WHITE);
-            } else if (index == R.styleable.CountDownView_cdProgressPadding) {
-                mProgressPadding = ta.getDimensionPixelSize(index, 0);
-            } else if (index == R.styleable.CountDownView_cdProgressCenterColor) {
-                centerColor = ta.getColor(index, 0);
-            } else if (index == R.styleable.CountDownView_cdProgressSideColor) {
-                sideColor = ta.getColor(index, 0);
-            } else if (index == R.styleable.CountDownView_android_max) {
-                setMax(ta.getInt(index, 0));
-            } else if (index == R.styleable.CountDownView_android_progress) {
-                setProgress(ta.getInt(index, 0));
-            }
-        }
+        mTextColor = ta.getColor(R.styleable.CountDownView_cdTextColor, Color.BLACK);
+        mTextSize = ta.getDimensionPixelSize(R.styleable.CountDownView_cdTextSize, 10);
+        mStrokeWidth = ta.getDimensionPixelSize(R.styleable.CountDownView_cdProgressWidth, mStrokeWidth);
+        mProgressBgColor = ta.getColor(R.styleable.CountDownView_cdProgressBackgroundColor, Color.WHITE);
+        mProgressPadding = ta.getDimensionPixelSize(R.styleable.CountDownView_cdProgressPadding, 0);
+        int centerColor = ta.getColor(R.styleable.CountDownView_cdProgressCenterColor, 0);
+        int sideColor = ta.getColor(R.styleable.CountDownView_cdProgressSideColor, 0);
+        setMax(ta.getInt(R.styleable.CountDownView_android_max, 0));
+        setProgress(ta.getInt(R.styleable.CountDownView_android_progress, 0));
+
         ta.recycle();
         mColors = new int[]{
                 sideColor,

@@ -99,28 +99,15 @@ public class RoundTurnButton extends View {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundTurnButton,
                 0, R.style.RoundTurnButtonDefStyle);
-        int N = a.getIndexCount();
-        for (int i = 0; i < N; ++i) {
-            if (i == R.styleable.RoundTurnButton_android_thumb) {
-                mThumb = a.getDrawable(i);
-            } else if (i == R.styleable.RoundTurnButton_android_max) {
-                mMax = a.getInt(i, 0);
-            } else if (i == R.styleable.RoundTurnButton_android_progress) {
-                mProgress = a.getInt(i, 0);
-            } else if (i == R.styleable.RoundTurnButton_progressWidth) {
-                mProgressWidth = a.getDimension(i, 1);
-            } else if (i == R.styleable.RoundTurnButton_progressBackgroundWidth) {
-                mProgressBackgroundWidth = a.getDimension(i, 1);
-            } else if (i == R.styleable.RoundTurnButton_progressColor) {
-                mProgressColor = a.getColor(i, 0);
-            } else if (i == R.styleable.RoundTurnButton_progressBackgroundColor) {
-                mProgressBackgroundColor = a.getColor(i, 0);
-            } else if (i == R.styleable.RoundTurnButton_startAngle) {
-                mStartAngle = a.getInt(i, 0);
-            } else if (i == R.styleable.RoundTurnButton_sweepAngle) {
-                mSweepAngle = a.getInt(i, 360);
-            }
-        }
+        mThumb = a.getDrawable(R.styleable.RoundTurnButton_android_thumb);
+        mMax = a.getInt(R.styleable.RoundTurnButton_android_max, 0);
+        mProgress = a.getInt(R.styleable.RoundTurnButton_android_progress, 0);
+        mProgressWidth = a.getDimension(R.styleable.RoundTurnButton_progressWidth, 1);
+        mProgressBackgroundWidth = a.getDimension(R.styleable.RoundTurnButton_progressBackgroundWidth, 1);
+        mProgressColor = a.getColor(R.styleable.RoundTurnButton_progressColor, 0);
+        mProgressBackgroundColor = a.getColor(R.styleable.RoundTurnButton_progressBackgroundColor, 0);
+        mStartAngle = a.getInt(R.styleable.RoundTurnButton_startAngle, 0);
+        mSweepAngle = a.getInt(R.styleable.RoundTurnButton_sweepAngle, 360);
         a.recycle();
 
         mSweepAngle = mSweepAngle % 360;

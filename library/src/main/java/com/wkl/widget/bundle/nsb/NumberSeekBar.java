@@ -78,29 +78,16 @@ public class NumberSeekBar extends View {
         initProgressBar();
         TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.NumberSeekBar,
                 defStyleAttr, 0);
-        int count = ta.getIndexCount();
-        float mTextPadding = 0;
-        for (int i = 0; i < count; i++) {
-            int index = ta.getIndex(i);
-            if (index == R.styleable.NumberSeekBar_numberTextColor) {
-                mTextColor = ta.getColor(index, Color.WHITE);
-            } else if (index == R.styleable.NumberSeekBar_numberTextSize) {
-                mTextSize = ta.getDimensionPixelSize(index, 10);
-            } else if (index == R.styleable.NumberSeekBar_numberTextPadding) {
-                mTextPadding = ta.getDimensionPixelSize(index, 0);
-            } else if (index == R.styleable.NumberSeekBar_android_max) {
-                setMax(ta.getInt(index, 0));
-            } else if (index == R.styleable.NumberSeekBar_android_progress) {
-                setProgress(ta.getInt(index, 0));
-            } else if (index == R.styleable.NumberSeekBar_android_progressDrawable) {
-                setProgressDrawable(ta.getDrawable(index));
-            } else if (index == R.styleable.NumberSeekBar_android_thumbOffset) {
-                final int thumbOffset = ta.getDimensionPixelOffset(index, mThumbOffset);
-                setThumbOffset(thumbOffset);
-            } else if (index == R.styleable.NumberSeekBar_android_thumb) {
-                setThumb(ta.getDrawable(index));
-            }
-        }
+
+        mTextColor = ta.getColor(R.styleable.NumberSeekBar_numberTextColor, Color.WHITE);
+        mTextSize = ta.getDimensionPixelSize(R.styleable.NumberSeekBar_numberTextSize, 10);
+        float mTextPadding = ta.getDimensionPixelSize(R.styleable.NumberSeekBar_numberTextPadding, 0);
+        setMax(ta.getInt(R.styleable.NumberSeekBar_android_max, 0));
+        setProgress(ta.getInt(R.styleable.NumberSeekBar_android_progress, 0));
+        setProgressDrawable(ta.getDrawable(R.styleable.NumberSeekBar_android_progressDrawable));
+        final int thumbOffset = ta.getDimensionPixelOffset(R.styleable.NumberSeekBar_android_thumbOffset, mThumbOffset);
+        setThumbOffset(thumbOffset);
+        setThumb(ta.getDrawable(R.styleable.NumberSeekBar_android_thumb));
         ta.recycle();
 
         //设置画笔

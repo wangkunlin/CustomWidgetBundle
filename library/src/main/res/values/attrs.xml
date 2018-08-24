@@ -59,4 +59,19 @@
         <attr name="android:thumb" />
     </declare-styleable>
 
+    <declare-styleable name="VerticalTextView">
+        <!--每个文字之间的间距-->
+        <attr name="verticalSpacing" format="dimension|reference" />
+        <!--列间距-->
+        <attr name="horizontalSpacing" format="dimension|reference" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:text" />
+        <attr name="android:gravity" />
+        <!-- 配置旋转的字符-->
+        <attr name="rotationLetters" format="string|reference" />
+        <!-- 配置字符旋转的角度-->
+        <attr name="rotationDegrees" format="integer|reference" />
+    </declare-styleable>
+
 </resources>
