@@ -14,7 +14,8 @@
         <com.wkl.widget.bundle.fiv.ForegroundImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:foreground="#5c00ff00"
+            android:onClick="gotoEqualizer"
+            android:foreground="@drawable/icon_equalizer_thumb"
             android:foregroundGravity="bottom"
             android:src="@mipmap/ic_launcher" />
 
@@ -38,6 +39,7 @@
             android:layout_height="90dp"
             android:max="10"
             android:progress="7"
+            android:onClick="startCountDown"
             app:cdProgressBackgroundColor="#000"
             app:cdProgressCenterColor="#aa71de"
             app:cdProgressPadding="4dp"

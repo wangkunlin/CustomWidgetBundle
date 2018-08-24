@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RoundTurnButtonDefStyle">
+        <item name="android:thumb">@drawable/icon_equalizer_turn_thumb</item>
+        <item name="android:max">1000</item>
+        <item name="android:progress">0</item>
+        <item name="startAngle">220</item>
+        <item name="sweepAngle">280</item>
+        <item name="progressWidth">2dp</item>
+        <item name="progressBackgroundWidth">1dp</item>
+        <item name="progressColor">@color/color_E6205C</item>
+        <item name="progressBackgroundColor">@color/color_6C6F83</item>
+    </style>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="color_ED215D">#ED215D</color>
+    <color name="color_2E3152">#2E3152</color>
+    <color name="color_3D3D55">#3D3D55</color>
+    <color name="color_009688">#009688</color>
+    <color name="color_FF0B5C">#FF0B5C</color>
+    <color name="color_E6205C">#E6205C</color>
+    <color name="color_FA266D">#FA266D</color>
+    <color name="color_131721">#131721</color>
+    <color name="color_6C6F83">#6C6F83</color>
+    <color name="color_5B5E6D">#5B5E6D</color>
+    <color name="color_2B304E">#2B304E</color>
+
+    <color name="color_60_alpha_3D3D55">#993D3D55</color>
+
+    <color name="color_15_alpha_black">#26000000</color>
+    <color name="color_30_alpha_black">#4c000000</color>
+    <color name="color_38_alpha_black">#61000000</color>
+    <color name="color_50_alpha_black">#7F000000</color>
+    <color name="color_54_alpha_black">#89000000</color>
+    <color name="color_67_alpha_black">#6B000000</color>
+    <color name="color_70_alpha_black">#B2000000</color>
+    <color name="color_75_alpha_black">#BF000000</color>
+    <color name="color_80_alpha_black">#CC000000</color>
+
+    <color name="color_30_alpha_white">#4cFFFFFF</color>
+    <color name="color_33_alpha_white">#54FFFFFF</color>
+    <color name="color_54_alpha_white">#89FFFFFF</color>
+    <color name="color_67_alpha_white">#6BFFFFFF</color>
+    <color name="color_80_alpha_white">#CCFFFFFF</color>
+    <color name="color_84_alpha_white">#D6FFFFFF</color>
+
+    <color name="progress_gray">#FFD8D8D8</color>
+    <color name="default_blue_light">#ff33b5e5</color>
+</resources>
