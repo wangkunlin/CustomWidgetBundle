@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="ForegroundImageView">
+        <attr name="android:foreground" />
+        <attr name="android:foregroundGravity" />
+    </declare-styleable>
+
     <declare-styleable name="NumberSeekBar">
+        <attr name="android:thumb" />
+        <attr name="android:thumbOffset" />
+        <attr name="android:max" />
+        <attr name="android:progress" />
+        <attr name="android:progressDrawable" />
         <!--文字大小-->
         <attr name="numberTextSize" format="dimension|reference" />
         <!--文字颜色-->
@@ -11,6 +21,8 @@
     </declare-styleable>
 
     <declare-styleable name="CountDownView">
+        <attr name="android:max" />
+        <attr name="android:progress" />
         <!--progress 两边的颜色-->
         <attr name="cdProgressSideColor" format="color|reference" />
         <!--progress 中间的颜色-->

@@ -14,6 +14,8 @@ import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
+import com.wkl.widget.bundle.R;
+
 /**
  * Created by <a href="mailto:kunlin.wang@mtime.com">Wang kunlin</a>
  * <p>
@@ -30,11 +32,6 @@ public class ForegroundImageView extends AppCompatImageView {
     private int mForegroundGravity = Gravity.NO_GRAVITY;
     private Rect mSelfBounds;
     private Rect mOverlayBounds;
-
-    private static final int[] FOREGROUND_ATTRS = new int[]{
-            android.R.attr.foreground,
-            android.R.attr.foregroundGravity
-    };
 
     public ForegroundImageView(Context context) {
         super(context);
@@ -54,9 +51,9 @@ public class ForegroundImageView extends AppCompatImageView {
     private void init(Context context, AttributeSet attrs) {
         mSelfBounds = new Rect();
         mOverlayBounds = new Rect();
-        TypedArray a = context.obtainStyledAttributes(attrs, FOREGROUND_ATTRS);
-        setForegroundDrawable(a.getDrawable(0));
-        setForegroundGravity(a.getInt(1, Gravity.NO_GRAVITY));
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundImageView);
+        setForegroundDrawable(a.getDrawable(R.styleable.ForegroundImageView_android_foreground));
+        setForegroundGravity(a.getInt(R.styleable.ForegroundImageView_android_foregroundGravity, Gravity.NO_GRAVITY));
         a.recycle();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             super.setForeground(null);

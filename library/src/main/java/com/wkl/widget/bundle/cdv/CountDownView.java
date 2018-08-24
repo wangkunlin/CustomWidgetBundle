@@ -29,11 +29,6 @@ import com.wkl.widget.bundle.R;
 
 public class CountDownView extends View {
 
-    private static final int[] ATTRS = {
-            android.R.attr.max,
-            android.R.attr.progress,
-    };
-
     public CountDownView(Context context) {
         super(context);
         init(context, null);
@@ -81,11 +76,6 @@ public class CountDownView extends View {
     @SuppressLint("ResourceType")
     private void init(Context context, AttributeSet attrs) {
         initProgressBar();
-        TypedArray a = context.obtainStyledAttributes(attrs, ATTRS);
-
-        setMax(a.getInt(0, 0));
-        setProgress(a.getInt(1, 0));
-        a.recycle();
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CountDownView);
         int count = ta.getIndexCount();
@@ -107,6 +97,10 @@ public class CountDownView extends View {
                 centerColor = ta.getColor(index, 0);
             } else if (index == R.styleable.CountDownView_cdProgressSideColor) {
                 sideColor = ta.getColor(index, 0);
+            } else if (index == R.styleable.CountDownView_android_max) {
+                setMax(ta.getInt(index, 0));
+            } else if (index == R.styleable.CountDownView_android_progress) {
+                setProgress(ta.getInt(index, 0));
             }
         }
         ta.recycle();

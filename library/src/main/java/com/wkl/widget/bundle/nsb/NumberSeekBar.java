@@ -1,6 +1,5 @@
 package com.wkl.widget.bundle.nsb;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -50,14 +49,6 @@ public class NumberSeekBar extends View {
     private Drawable mThumb;
     private int mMax;
     private int mProgress;
-
-    private static final int[] ATTRS = {
-            android.R.attr.max,
-            android.R.attr.progress,
-            android.R.attr.progressDrawable,
-            android.R.attr.thumb,
-            android.R.attr.thumbOffset,
-    };
     private Drawable mCurrentDrawable;
     private float mFontHeight;
     private int mThumbOffset;
@@ -82,7 +73,6 @@ public class NumberSeekBar extends View {
         this(context, attrs, 0);
     }
 
-    @SuppressLint("ResourceType")
     public NumberSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initProgressBar();
@@ -98,6 +88,17 @@ public class NumberSeekBar extends View {
                 mTextSize = ta.getDimensionPixelSize(index, 10);
             } else if (index == R.styleable.NumberSeekBar_numberTextPadding) {
                 mTextPadding = ta.getDimensionPixelSize(index, 0);
+            } else if (index == R.styleable.NumberSeekBar_android_max) {
+                setMax(ta.getInt(index, 0));
+            } else if (index == R.styleable.NumberSeekBar_android_progress) {
+                setProgress(ta.getInt(index, 0));
+            } else if (index == R.styleable.NumberSeekBar_android_progressDrawable) {
+                setProgressDrawable(ta.getDrawable(index));
+            } else if (index == R.styleable.NumberSeekBar_android_thumbOffset) {
+                final int thumbOffset = ta.getDimensionPixelOffset(index, mThumbOffset);
+                setThumbOffset(thumbOffset);
+            } else if (index == R.styleable.NumberSeekBar_android_thumb) {
+                setThumb(ta.getDrawable(index));
             }
         }
         ta.recycle();
@@ -111,17 +112,6 @@ public class NumberSeekBar extends View {
         Paint.FontMetricsInt metricsInt = mPaint.getFontMetricsInt();
 
         mFontHeight = metricsInt.bottom - metricsInt.top + mTextPadding;
-
-        TypedArray a = context.obtainStyledAttributes(attrs, ATTRS);
-
-        setMax(a.getInt(0, 0));
-        setProgress(a.getInt(1, 0));
-        setProgressDrawable(a.getDrawable(2));
-        final int thumbOffset = a.getDimensionPixelOffset(4, mThumbOffset);
-        setThumbOffset(thumbOffset);
-        setThumb(a.getDrawable(3));
-
-        a.recycle();
 
         mScaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
