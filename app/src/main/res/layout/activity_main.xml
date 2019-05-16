@@ -14,9 +14,9 @@
         <com.wkl.widget.bundle.fiv.ForegroundImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:onClick="gotoEqualizer"
             android:foreground="@drawable/icon_equalizer_thumb"
             android:foregroundGravity="bottom"
+            android:onClick="gotoEqualizer"
             android:src="@mipmap/ic_launcher" />
 
         <com.wkl.widget.bundle.nsb.NumberSeekBar
@@ -24,9 +24,9 @@
             android:layout_width="130dp"
             android:layout_height="37dp"
             android:max="100"
-            android:paddingBottom="10dp"
             android:paddingLeft="9dp"
             android:paddingRight="9dp"
+            android:paddingBottom="10dp"
             android:progress="100"
             android:progressDrawable="@drawable/bg_publish_seekbar"
             android:thumb="@drawable/icon_face_beautify_thumb"
@@ -38,8 +38,8 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:max="10"
-            android:progress="7"
             android:onClick="startCountDown"
+            android:progress="7"
             app:cdProgressBackgroundColor="#000"
             app:cdProgressCenterColor="#aa71de"
             app:cdProgressPadding="4dp"
@@ -47,6 +47,20 @@
             app:cdProgressWidth="8dp"
             app:cdTextColor="#000"
             app:cdTextSize="40sp" />
+
+        <com.wkl.widget.bundle.mssb.MovieScoreSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:progressDrawable="@drawable/game_score_progress"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:cornerRadius="2dp"
+            app:segmentCount="10"
+            app:segmentPadding="3dp" />
 
     </LinearLayout>
 

@@ -20,6 +20,24 @@
         <attr name="numberTextPadding" format="dimension|reference" />
     </declare-styleable>
 
+    <declare-styleable name="MovieScoreSeekBar">
+        <attr name="android:progressDrawable" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:textStyle" />
+
+        <!-- 是否显示数字 -->
+        <attr name="showText" format="boolean" />
+        <!-- 遮罩层颜色 -->
+        <attr name="maskColor" format="color|reference" />
+        <!-- 分段数量 -->
+        <attr name="segmentCount" format="integer|reference" />
+        <!-- 圆角-->
+        <attr name="cornerRadius" format="dimension|reference" />
+        <!-- 每两个分段之间的间距 -->
+        <attr name="segmentPadding" format="dimension|reference" />
+    </declare-styleable>
+
     <declare-styleable name="CountDownView">
         <attr name="android:max" />
         <attr name="android:progress" />
