@@ -13,7 +13,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
@@ -38,16 +37,14 @@ import java.lang.annotation.RetentionPolicy;
  * On 2019-05-15
  */
 public class MovieScoreSeekBar extends View {
-    private static final int MAX_LEVEL = 10000;
 
     private int mSegmentCount = 10;
     private float mCornerRadius = 0;
 
     private Drawable mProgressDrawable;
-    private int mSegmentPadding = 0;
+    private float mSegmentPadding = 0;
     private boolean mShowText = true;
     private int mScore = 0;
-    private Drawable mCurrentDrawable;
 
     private TextPaint mTextPaint;
     private Paint mPaint;
@@ -93,7 +90,7 @@ public class MovieScoreSeekBar extends View {
         float textSize1 = a.getDimension(R.styleable.MovieScoreSeekBar_android_textSize, textSize);
         int textColor = a.getColor(R.styleable.MovieScoreSeekBar_android_textColor, Color.WHITE);
         int textStyle = a.getInt(R.styleable.MovieScoreSeekBar_android_textStyle, -1);
-        mSegmentPadding = a.getDimensionPixelSize(R.styleable.MovieScoreSeekBar_segmentPadding, 3);
+        mSegmentPadding = a.getDimension(R.styleable.MovieScoreSeekBar_segmentPadding, 3);
         mShowText = a.getBoolean(R.styleable.MovieScoreSeekBar_showText, true);
         int maskColor = a.getColor(R.styleable.MovieScoreSeekBar_maskColor, Color.WHITE);
 
@@ -189,15 +186,15 @@ public class MovieScoreSeekBar extends View {
     }
 
     private void swapCurrentDrawable(Drawable newDrawable) {
-        final Drawable oldDrawable = mCurrentDrawable;
-        mCurrentDrawable = newDrawable;
+        final Drawable oldDrawable = mProgressDrawable;
+        mProgressDrawable = newDrawable;
 
-        if (oldDrawable != mCurrentDrawable) {
+        if (oldDrawable != mProgressDrawable) {
             if (oldDrawable != null) {
                 oldDrawable.setVisible(false, false);
             }
-            if (mCurrentDrawable != null) {
-                mCurrentDrawable.setVisible(getWindowVisibility() == VISIBLE && isShown(), false);
+            if (mProgressDrawable != null) {
+                mProgressDrawable.setVisible(getWindowVisibility() == VISIBLE && isShown(), false);
             }
         }
     }
@@ -288,8 +285,7 @@ public class MovieScoreSeekBar extends View {
 
     private void updateThumbAndTrackPos(int w, int h) {
         final int paddedHeight = h - getPaddingTop() - getPaddingBottom();
-        final Drawable track = mCurrentDrawable;
-
+        final Drawable track = mProgressDrawable;
 
         // Apply offset to whichever item is taller.
         final int trackOffset = getPaddingTop();
@@ -301,9 +297,7 @@ public class MovieScoreSeekBar extends View {
     }
 
     private void doRefreshProgress(int progress, boolean callBackToApp) {
-        int range = mSegmentCount;
-        final float scale = range > 0 ? progress / (float) range : 0;
-        setVisualProgress(scale);
+        invalidate();
         if (callBackToApp) {
             onProgressRefresh(progress);
         }
@@ -315,41 +309,18 @@ public class MovieScoreSeekBar extends View {
         }
     }
 
-    private void setVisualProgress(float scale) {
-        Drawable d = mCurrentDrawable;
-
-        if (d instanceof LayerDrawable) {
-            d = ((LayerDrawable) d).findDrawableByLayerId(android.R.id.progress);
-            if (d == null) {
-                // If we can't find the requested layer, fall back to setting
-                // the level of the entire drawable. This will break if
-                // progress is set on multiple elements, but the theme-default
-                // drawable will always have all layer IDs present.
-                d = mCurrentDrawable;
-            }
-        }
-
-        if (d != null) {
-            final int level = (int) (scale * MAX_LEVEL);
-            d.setLevel(level);
-            invalidate();
-        } else {
-            invalidate();
-        }
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         drawTrack(canvas);
 
-        int segmentWidth = (mBounds.width() - getPaddingRight() - getPaddingLeft() -
+        float segmentWidth = (mBounds.width() - getPaddingRight() - getPaddingLeft() -
                 (mSegmentCount - 1) * mSegmentPadding) / mSegmentCount;
 
         drawMask(canvas, segmentWidth);
         drawText(canvas, segmentWidth);
     }
 
-    private void drawText(Canvas canvas, int segmentWidth) {
+    private void drawText(Canvas canvas, float segmentWidth) {
         if (!mShowText) {
             return;
         }
@@ -357,21 +328,21 @@ public class MovieScoreSeekBar extends View {
         if (score <= 0) {
             return;
         }
-        int left = getPaddingLeft() + (segmentWidth + mSegmentPadding) * (score - 1);
-        int top = getPaddingTop();
-        int right = left + segmentWidth;
-        int bottom = mBounds.height() - getPaddingBottom();
+        float left = getPaddingLeft() + (segmentWidth + mSegmentPadding) * (score - 1);
+        float top = getPaddingTop();
+        float right = left + segmentWidth;
+        float bottom = mBounds.height() - getPaddingBottom();
 
-        float centerY = (top + bottom) >> 1;
+        float centerY = (top + bottom) / 2;
         Paint.FontMetrics fm = mTextPaint.getFontMetrics();
         float baseLine = centerY - (fm.bottom - fm.top) / 2 - fm.top;
         String text = String.valueOf(score);
         float textWidth = mTextPaint.measureText(text);
-        float x = ((left + right) >> 1) - textWidth / 2;
+        float x = ((left + right) / 2) - textWidth / 2;
         canvas.drawText(text, x, baseLine, mTextPaint);
     }
 
-    private void drawMask(Canvas canvas, int segmentWidth) {
+    private void drawMask(Canvas canvas, float segmentWidth) {
         int sc = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
 
         canvas.drawRect(getPaddingLeft(),
@@ -401,10 +372,15 @@ public class MovieScoreSeekBar extends View {
      * Draws the progress bar track.
      */
     private void drawTrack(Canvas canvas) {
-        final Drawable d = mCurrentDrawable;
+        Drawable d = mProgressDrawable;
         if (d != null) {
             final int saveCount = canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
+            int progress = mScore;
+            float scale = progress * 1f / mSegmentCount;
+            int width = mBounds.width() - getPaddingLeft() - getPaddingRight();
+            canvas.clipRect(0, 0, width * scale,
+                    getHeight() - getPaddingBottom());
             d.draw(canvas);
             canvas.restoreToCount(saveCount);
         }

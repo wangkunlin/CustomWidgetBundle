@@ -26,6 +26,8 @@
         <attr name="android:textColor" />
         <attr name="android:textStyle" />
 
+        <attr name="backgroundDrawable" format="reference" />
+
         <!-- 是否显示数字 -->
         <attr name="showText" format="boolean" />
         <!-- 遮罩层颜色 -->

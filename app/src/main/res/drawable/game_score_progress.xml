@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@android:id/background">
-        <shape>
-            <solid android:color="#2F324B" />
-        </shape>
-    </item>
-    <item android:id="@android:id/progress">
-        <scale android:scaleWidth="100%">
-            <shape>
-                <gradient
-                    android:endColor="#aa71de"
-                    android:startColor="#6C88E3" />
-            </shape>
-        </scale>
-    </item>
-</layer-list>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:endColor="#FEB12A"
+        android:startColor="#FFE319" />
+</shape>

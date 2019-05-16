@@ -50,15 +50,46 @@
 
         <com.wkl.widget.bundle.mssb.MovieScoreSeekBar
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="20dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="12dp"
             android:layout_marginRight="16dp"
+            android:background="#EBEDF2"
             android:progressDrawable="@drawable/game_score_progress"
             android:textColor="#fff"
             android:textSize="14sp"
             android:textStyle="italic"
-            app:cornerRadius="2dp"
+            app:cornerRadius="4dp"
+            app:segmentCount="10"
+            app:segmentPadding="3dp" />
+
+        <com.wkl.widget.bundle.mssb.MovieScoreSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:background="#EBEDF2"
+            android:progressDrawable="@drawable/game_score_progress"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:cornerRadius="4dp"
+            app:segmentCount="10"
+            app:segmentPadding="3dp" />
+
+        <com.wkl.widget.bundle.mssb.MovieScoreSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:background="#EBEDF2"
+            android:progressDrawable="@drawable/game_score_progress"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:cornerRadius="4dp"
             app:segmentCount="10"
             app:segmentPadding="3dp" />
 
