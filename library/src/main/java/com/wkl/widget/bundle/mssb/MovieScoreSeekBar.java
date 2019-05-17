@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
@@ -42,6 +43,7 @@ public class MovieScoreSeekBar extends View {
     private float mCornerRadius = 0;
 
     private Drawable mProgressDrawable;
+    private Drawable mForeground;
     private float mSegmentPadding = 0;
     private boolean mShowText = true;
     private int mScore = 0;
@@ -92,7 +94,7 @@ public class MovieScoreSeekBar extends View {
         int textStyle = a.getInt(R.styleable.MovieScoreSeekBar_android_textStyle, -1);
         mSegmentPadding = a.getDimension(R.styleable.MovieScoreSeekBar_segmentPadding, 3);
         mShowText = a.getBoolean(R.styleable.MovieScoreSeekBar_showText, true);
-        int maskColor = a.getColor(R.styleable.MovieScoreSeekBar_maskColor, Color.WHITE);
+        setForegroundDrawable(a.getDrawable(R.styleable.MovieScoreSeekBar_android_foreground));
 
         a.recycle();
 
@@ -106,11 +108,44 @@ public class MovieScoreSeekBar extends View {
         mScaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(maskColor);
+        mPaint.setColor(Color.WHITE);
         mXfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_OUT);
         mPaint.setStyle(Paint.Style.FILL);
 
         setLayerType(LAYER_TYPE_SOFTWARE, null);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            super.setForeground(null);
+        }
+    }
+
+    @Override
+    public void setForeground(Drawable foreground) {
+        setForegroundDrawable(foreground);
+    }
+
+    @Override
+    public Drawable getForeground() {
+        return mForeground;
+    }
+
+    public Drawable getForegroundDrawable() {
+        return mForeground;
+    }
+
+    public void setForegroundDrawable(Drawable foreground) {
+        if (mForeground == foreground) return;
+        if (mForeground != null) {
+            mForeground.setCallback(null);
+            unscheduleDrawable(mForeground);
+        }
+        mForeground = foreground;
+        if (foreground != null) {
+            if (foreground.isStateful()) {
+                foreground.setState(getDrawableState());
+            }
+            foreground.setCallback(this);
+        }
+        invalidate();
     }
 
     public void setProgressDrawable(Drawable d) {
@@ -151,6 +186,9 @@ public class MovieScoreSeekBar extends View {
         if (mProgressDrawable != null) {
             mProgressDrawable.setVisible(isVisible, false);
         }
+        if (mForeground != null) {
+            mForeground.setVisible(isVisible, false);
+        }
     }
 
     private static int constrain(int amount, int high) {
@@ -166,14 +204,20 @@ public class MovieScoreSeekBar extends View {
         if (mProgressDrawable != null) {
             mProgressDrawable.setBounds(0, 0, right, bottom);
         }
+        if (mForeground != null) {
+            mForeground.setBounds(0, 0, right, bottom);
+        }
     }
 
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
         boolean changed = false;
-        if (mProgressDrawable != null) {
+        if (mProgressDrawable != null && mProgressDrawable.isStateful()) {
             changed = mProgressDrawable.setState(getDrawableState());
+        }
+        if (mForeground != null && mForeground.isStateful()) {
+            changed |= mForeground.setState(getDrawableState());
         }
         if (changed) {
             invalidate();
@@ -182,7 +226,7 @@ public class MovieScoreSeekBar extends View {
 
     @Override
     protected boolean verifyDrawable(@NonNull Drawable dr) {
-        return dr == mProgressDrawable || super.verifyDrawable(dr);
+        return dr == mProgressDrawable || dr == mForeground || super.verifyDrawable(dr);
     }
 
     private void swapCurrentDrawable(Drawable newDrawable) {
@@ -345,10 +389,13 @@ public class MovieScoreSeekBar extends View {
     private void drawMask(Canvas canvas, float segmentWidth) {
         int sc = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
 
-        canvas.drawRect(getPaddingLeft(),
-                getPaddingTop(),
-                mBounds.width() - getPaddingRight(),
-                mBounds.height() - getPaddingBottom(), mPaint);
+        Drawable d = mForeground;
+        if (d != null) {
+            final int saveCount = canvas.save();
+            canvas.translate(getPaddingLeft(), getPaddingTop());
+            d.draw(canvas);
+            canvas.restoreToCount(saveCount);
+        }
 
         mSegmentBounds.set(getPaddingLeft(),
                 getPaddingTop(),
